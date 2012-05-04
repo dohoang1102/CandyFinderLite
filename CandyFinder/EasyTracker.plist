@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>accountId</key>
+	<string>UA-30227515-1</string>
+	<key>debugEnabled</key>
+	<true/>
+	<key>dispatchPeriod</key>
+	<integer>0</integer>
+	<key>anonymizeIpEnabled</key>
+	<integer>0</integer>
+	<key>ResultsViewController</key>
+	<string>/resultsviewcontroller</string>
+	<key>MapViewController</key>
+	<string>/mapviewcontroller</string>
+	<key>PlacesViewController</key>
+	<string>/placesviewcontroller</string>
+	<key>TagCandyViewController</key>
+	<string>/tagcandyviewcontroller</string>
+	<key>AnnotationDetails</key>
+	<string>/annotationdetails</string>
+	<key>NewCandyViewController</key>
+	<string>/newcandyviewcontroller</string>
+</dict>
+</plist>
