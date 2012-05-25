@@ -65,7 +65,7 @@
     
     
     //Add toolbar to bottom for clear button
-    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 387, 320, 44)];
+    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 387, 320, 44)];//x,y,width,height
      [toolbar setBarStyle:UIBarStyleBlack];
      UIBarButtonItem *meButton = [[UIBarButtonItem alloc] initWithTitle:@"Me" 
      style:UIBarButtonItemStyleBordered 
@@ -106,6 +106,9 @@
     
     
     //Add the toolbar to the bottom
+    if(_bannerView.bannerLoaded) {
+        [self showBannerView:_bannerView animated:YES];
+    }
     [self.tabBarController.view addSubview:toolbar];
     
     
@@ -286,6 +289,10 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     if ([self isBetterLocation:newLocation]){
         self.bestLocation = newLocation;
+        
+        //NSLog(@"%f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+        //((AppDelegate *)[[UIApplication sharedApplication] delegate]).currentLocation = [[Location alloc] initWithLocation:newLocation.coordinate];
+        
         if(isFirstTimeLoading) {
             MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(bestLocation.coordinate, 800, 800);
             MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
@@ -603,6 +610,42 @@
         [filterBar resignFirstResponder];
     }
     [filterBar setHidden:YES];
+}
+
+
+
+
+#pragma mark - BannerViewContainer Protocol
+- (void)showBannerView:(ADBannerView *)bannerView animated:(BOOL)animated
+{
+    _bannerView = bannerView;
+    
+    //Move the toolbar up
+    //Move the bannerview up
+    [UIView beginAnimations:@"fixupViews" context:nil];
+    
+    CGRect toolFrame = toolbar.frame;
+    [toolbar setFrame:CGRectMake(toolFrame.origin.x, 337, toolFrame.size.width, toolFrame.size.height)];
+    
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    [bannerView setFrame:CGRectMake(0, 381, bannerView.bounds.size.width, bannerView.bounds.size.height)];
+    
+    [UIView commitAnimations];
+}
+
+- (void)hideBannerView:(ADBannerView *)bannerView animated:(BOOL)animated
+{
+    //Move the toolbar up
+    //Move the bannerview up
+    [UIView beginAnimations:@"fixupViews" context:nil];
+    
+    CGRect toolFrame = toolbar.frame;
+    [toolbar setFrame:CGRectMake(toolFrame.origin.x, 387, toolFrame.size.width, toolFrame.size.height)];
+    
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    [bannerView setFrame:CGRectMake(0, bounds.size.height, bannerView.bounds.size.width, bannerView.bounds.size.height)];
+    
+    [UIView commitAnimations];
 }
 
 @end

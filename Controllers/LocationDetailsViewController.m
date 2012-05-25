@@ -263,7 +263,8 @@
             //User wants directions
             //Open maps and navigate
             AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%d,%d&daddr=%d,%d",app.currentLocation.coordinate.latitude, app.currentLocation.coordinate.longitude, location.coordinate.latitude, location.coordinate.longitude]]];  
+            //NSLog(@"lat: %f lon: %f", app.currentLocation.coordinate.latitude, app.currentLocation.coordinate.longitude);
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",app.currentLocation.coordinate.latitude, app.currentLocation.coordinate.longitude, location.coordinate.latitude, location.coordinate.longitude]]];  
         } else if ([alertView.title isEqualToString:@"Switching to Phone"]) {
             //User wants to call the location
             //Make phone call

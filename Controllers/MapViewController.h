@@ -20,6 +20,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <iAd/iAd.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
 #import "AnnotationDetails.h"
@@ -32,7 +33,7 @@
 #define ONE_MINUTE          (60)
 #define TWO_MINUTES         (2 * ONE_MINUTE)
 
-@interface MapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate> {
+@interface MapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, BannerViewContainer> {
     MKMapView *mapView;
     CLLocation *bestLocation;
     CLLocationManager *locationManager;
@@ -54,6 +55,7 @@
     BOOL isFilteringByLocation;
     
     UIToolbar *toolbar;
+    ADBannerView *_bannerView;
 }
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;

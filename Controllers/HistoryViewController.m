@@ -13,6 +13,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "FlurryAnalytics.h"
 #import "AppDelegate.h"
+#import "AnnotationDetails.h"
 
 
 @implementation HistoryViewController

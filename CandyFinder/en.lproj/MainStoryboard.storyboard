@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -275,7 +275,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="MSt-IH-42e">
-                                <rect key="frame" x="20" y="247" width="280" height="38"/>
+                                <rect key="frame" x="20" y="206" width="280" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <state key="normal" title="Rate CandyFinder" backgroundImage="button_with_badge.png">
@@ -289,17 +289,20 @@
                                     <action selector="rateCandyfinder:" destination="A3f-Pd-0pM" eventType="touchUpInside" id="0mE-8K-ADM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="dyZ-76-bJ2">
-                                <rect key="frame" x="282" y="372" width="18" height="19"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qPc-IJ-YTv">
+                                <rect key="frame" x="20" y="128" width="280" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="Instructions" backgroundImage="rate_app_button.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="7qx-OT-tuN" kind="modal" id="5U3-JX-8Cb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039221759999995" green="0.88627457620000005" blue="0.94117653369999998" alpha="1" colorSpace="deviceRGB"/>
@@ -311,6 +314,81 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="670" y="2124"/>
+        </scene>
+        <!--Instructions View Controller-->
+        <scene sceneID="08m-BJ-ERd">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IwB-qc-JvP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="7qx-OT-tuN" customClass="InstructionsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JzX-fJ-Jyf">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tab_find_Alpha.png" id="R9a-pG-Swt">
+                                <rect key="frame" x="20" y="87" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="uFK-xa-784">
+                                <rect key="frame" x="88" y="50" width="212" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Search for your favorite candies by either typing the name or scanning the barcode.  Click on a result to view locations near you.  Click "Add New" to add candies to our database.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tab_new_Alpha.png" id="Kr5-Ge-OSm">
+                                <rect key="frame" x="20" y="197" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="We can't get to every location, so we're relying on you to tag candies at locations near you." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WEG-ze-zaS">
+                                <rect key="frame" x="88" y="191" width="212" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="View details, contact info, get directions, and browse candies that have been tagged at locations near you." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="coc-1u-PQd">
+                                <rect key="frame" x="88" y="271" width="212" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Map_icon_alpha.png" id="NEG-Ax-ph5">
+                                <rect key="frame" x="20" y="289" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tab_history_Alpha.png" id="Gn6-yb-gNP">
+                                <rect key="frame" x="20" y="377" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="View your favorite, recently-searched candies here.  Click one to view locations near you." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Xrx-VK-gfP">
+                                <rect key="frame" x="88" y="374" width="212" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="V38-qP-Rbw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="done" id="qtb-y2-nMP">
+                                        <connections>
+                                            <action selector="dismiss:" destination="7qx-OT-tuN" id="gGj-IL-7W5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039221759999995" green="0.88627457620000005" blue="0.94117653369999998" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="doneButton" destination="qtb-y2-nMP" id="yPi-TT-A7D"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1167" y="2124"/>
         </scene>
         <!--Places View Controller-->
         <scene sceneID="mby-Ib-af0">
@@ -360,8 +438,8 @@
                             <rect key="frame" x="5" y="6" width="310" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Places" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="13c-JC-klF">
-                                    <rect key="frame" x="108" y="0.0" width="95" height="33"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Select a Place" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="13c-JC-klF">
+                                    <rect key="frame" x="9" y="0.0" width="218" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -426,11 +504,11 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="btn_PhotoAdd.png" id="AuZ-SZ-wBg">
-                                <rect key="frame" x="76" y="177" width="224" height="101"/>
+                                <rect key="frame" x="76" y="167" width="224" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iut-7E-BfB">
-                                <rect key="frame" x="104" y="294" width="112" height="53"/>
+                                <rect key="frame" x="104" y="260" width="112" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="btn_Save.png">
@@ -871,6 +949,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Map_icon_alpha.png" width="70" height="60"/>
         <image name="Map_icon_alpha_30.png" width="30" height="30"/>
         <image name="btn_PhotoAdd.png" width="440" height="202"/>
         <image name="btn_Save.png" width="270" height="120"/>
@@ -878,10 +957,14 @@
         <image name="button_with_badge.png" width="315" height="44"/>
         <image name="crossHairs.png" width="80" height="72"/>
         <image name="powered-by-google-on-non-white.png" width="104" height="16"/>
+        <image name="rate_app_button.png" width="537" height="75"/>
         <image name="scanner_overlay_gray_box.png" width="320" height="436"/>
+        <image name="tab_find_Alpha.png" width="70" height="60"/>
         <image name="tab_find_Alpha_30.png" width="30" height="30"/>
+        <image name="tab_history_Alpha.png" width="60" height="60"/>
         <image name="tab_history_Alpha_30.png" width="30" height="30"/>
         <image name="tab_info_Alpha_30.png" width="30" height="30"/>
+        <image name="tab_new_Alpha.png" width="70" height="60"/>
         <image name="tab_new_Alpha_30.png" width="30" height="30"/>
     </resources>
     <classes>
@@ -908,6 +991,14 @@
             <relationships>
                 <relationship kind="action" name="rateCandyfinder:"/>
                 <relationship kind="outlet" name="rateButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="InstructionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InstructionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dismiss:"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
             </relationships>
         </class>
         <class className="LocationDetailsViewController" superclassName="UITableViewController">

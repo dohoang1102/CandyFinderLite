@@ -22,6 +22,9 @@
 		0456AF1215544DD800883CF6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0456AF0615544DD800883CF6 /* SBJsonWriter.m */; };
 		0456AF161554571700883CF6 /* rate_app_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0456AF151554571700883CF6 /* rate_app_button.png */; };
 		0456AF181554592C00883CF6 /* button_with_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 0456AF171554592C00883CF6 /* button_with_badge.png */; };
+		0457C8CE157005230009BA52 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0457C8CD157005230009BA52 /* iAd.framework */; };
+		0457C8E615703CF30009BA52 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0457C8E515703CF30009BA52 /* InstructionsViewController.m */; };
+		0457C8E815703F8E0009BA52 /* Map_icon_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 0457C8E715703F8E0009BA52 /* Map_icon_alpha.png */; };
 		045B24A9154888940087CE58 /* LoginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 045B24A8154888940087CE58 /* LoginBackground.png */; };
 		046DFCA8151A52E3007A7DF6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046DFCA7151A52E3007A7DF6 /* CFNetwork.framework */; };
 		046DFCB2151A5581007A7DF6 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 046DFCB1151A5581007A7DF6 /* libsqlite3.0.dylib */; };
@@ -156,6 +159,10 @@
 		0456AF0615544DD800883CF6 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		0456AF151554571700883CF6 /* rate_app_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate_app_button.png; sourceTree = "<group>"; };
 		0456AF171554592C00883CF6 /* button_with_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_with_badge.png; sourceTree = "<group>"; };
+		0457C8CD157005230009BA52 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		0457C8E415703CF20009BA52 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
+		0457C8E515703CF30009BA52 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
+		0457C8E715703F8E0009BA52 /* Map_icon_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Map_icon_alpha.png; sourceTree = "<group>"; };
 		045B24A8154888940087CE58 /* LoginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackground.png; sourceTree = "<group>"; };
 		046DFCA7151A52E3007A7DF6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		046DFCB1151A5581007A7DF6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -313,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BA60CC154B06B700A1D321 /* Accounts.framework in Frameworks */,
+				0457C8CE157005230009BA52 /* iAd.framework in Frameworks */,
 				046DFCA8151A52E3007A7DF6 /* CFNetwork.framework in Frameworks */,
 				044A9ACE151E596600409A7F /* SystemConfiguration.framework in Frameworks */,
 				046DFCB2151A5581007A7DF6 /* libsqlite3.0.dylib in Frameworks */,
@@ -380,6 +388,7 @@
 		0488822B1535FEBD00C2D31B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0457C8E715703F8E0009BA52 /* Map_icon_alpha.png */,
 				0456AF171554592C00883CF6 /* button_with_badge.png */,
 				0456AF151554571700883CF6 /* rate_app_button.png */,
 				04927DCC15531FE3005FBCDA /* tag_new_button.png */,
@@ -480,6 +489,8 @@
 				04D2E266155062FD0031256D /* ImagePickerViewController.m */,
 				04D2E26B1551D67F0031256D /* LocationDetailsViewController.h */,
 				04D2E26C1551D67F0031256D /* LocationDetailsViewController.m */,
+				0457C8E415703CF20009BA52 /* InstructionsViewController.h */,
+				0457C8E515703CF30009BA52 /* InstructionsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -553,11 +564,12 @@
 		04D47E2C1519B41C002E0F29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D47E841519B6B9002E0F29 /* libzbar.a */,
+				0457C8CD157005230009BA52 /* iAd.framework */,
 				04BA60CB154B06B700A1D321 /* Accounts.framework */,
 				044A9ACD151E596600409A7F /* SystemConfiguration.framework */,
 				046DFCA7151A52E3007A7DF6 /* CFNetwork.framework */,
 				046DFCB1151A5581007A7DF6 /* libsqlite3.0.dylib */,
-				04D47E841519B6B9002E0F29 /* libzbar.a */,
 				04D47E821519B64A002E0F29 /* QuartzCore.framework */,
 				04D47E741519B63B002E0F29 /* AVFoundation.framework */,
 				04D47E751519B63B002E0F29 /* CoreLocation.framework */,
@@ -727,7 +739,7 @@
 		04D47E201519B41C002E0F29 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 04D47E231519B41C002E0F29 /* Build configuration list for PBXProject "CandyFinder" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -810,6 +822,7 @@
 				04927DCD15531FE3005FBCDA /* tag_new_button.png in Resources */,
 				0456AF161554571700883CF6 /* rate_app_button.png in Resources */,
 				0456AF181554592C00883CF6 /* button_with_badge.png in Resources */,
+				0457C8E815703F8E0009BA52 /* Map_icon_alpha.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,6 +892,7 @@
 				0456AF1015544DD800883CF6 /* SBJsonTokeniser.m in Sources */,
 				0456AF1115544DD800883CF6 /* SBJsonUTF8Stream.m in Sources */,
 				0456AF1215544DD800883CF6 /* SBJsonWriter.m in Sources */,
+				0457C8E615703CF30009BA52 /* InstructionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

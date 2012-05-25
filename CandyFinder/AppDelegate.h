@@ -7,12 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MapViewController.h"
+#import <iAd/iAd.h>
+//#import "MapViewController.h"
 #import "Candy.h"
 #import "Location.h"
 #import "Reachability.h"
+@class MapViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, MKMapViewDelegate> {
+
+@protocol BannerViewContainer <NSObject>
+
+- (void)showBannerView:(ADBannerView *)bannerView animated:(BOOL)animated;
+- (void)hideBannerView:(ADBannerView *)bannerView animated:(BOOL)animated;
+
+@end
+
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, MKMapViewDelegate, ADBannerViewDelegate, UITabBarControllerDelegate> {
     /**
      Delegate retrieves this from backend server when app loads
      Provides security for PUT and POST requests
@@ -43,6 +54,12 @@
     //Checks for a network connection
     //Alert displayed if none found
     Reachability *reachability;
+    
+    //Displays the ad banner
+    ADBannerView *adBanner;
+    
+    //Container for the currently-selected view controller
+    UIViewController<BannerViewContainer> *_currentController;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -54,6 +71,7 @@
 @property (nonatomic, assign) BOOL isLocating;
 @property (nonatomic, strong) CLLocation *bestLocation;
 @property (nonatomic, strong) Reachability *reachability;
+//@property (nonatomic, strong) IBOutlet UIViewController *currentController;
 
 - (BOOL) writeToHistoryPlist:(Candy *)candy;
 - (NSMutableArray *) readHistoryPlist;

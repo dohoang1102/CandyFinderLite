@@ -22,7 +22,9 @@
 
 @implementation AppDelegate
 
-NSString	*kAppID	= @"158944047567520";
+NSString	*kAppID	= @"530626986";
+NSString * const BannerViewActionWillBegin = @"BannerViewActionWillBegin";
+NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 
 @synthesize window = _window;
 @synthesize authenticity_token, currentCandy, currentLocation, locationManager, motionManager, isLocating, bestLocation, reachability;
@@ -95,6 +97,18 @@ NSString	*kAppID	= @"158944047567520";
     
     //Start Appirater to see when to display the info badge for the user to rate this app
     [Appirater appLaunched:YES];
+    
+    
+    
+    //AdSetup
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    NSLog(@"%f", bounds.size.height);
+    adBanner = [[ADBannerView alloc] initWithFrame:CGRectMake(0, bounds.size.height, 0, 0)];
+    adBanner.delegate = self;
+    adBanner.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    UITabBarController *tabController = (UITabBarController*)self.window.rootViewController;
+    [tabController.view addSubview:adBanner];
+    [tabController setDelegate:self];
 
     
     return YES;
@@ -400,6 +414,68 @@ NSString	*kAppID	= @"158944047567520";
     
     
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
+}
+
+
+
+#pragma mark - Ad Banner View Delegate
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [UIView beginAnimations:@"fixupViews" context:nil];
+    if(_currentController) {
+        [_currentController showBannerView:adBanner animated:YES];
+    } else {
+        [adBanner setFrame:CGRectMake(0, 381, adBanner.bounds.size.width, adBanner.bounds.size.height)];
+    }
+    [UIView commitAnimations];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [UIView beginAnimations:@"fixupViews" context:nil];
+    if(_currentController) {
+        [_currentController hideBannerView:adBanner animated:YES];
+    } else {
+        CGRect bounds = [[UIScreen mainScreen] bounds];
+        [adBanner setFrame:CGRectMake(0, bounds.size.height, adBanner.bounds.size.width, adBanner.bounds.size.height)];
+    }
+    [UIView commitAnimations];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:BannerViewActionWillBegin object:self];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:BannerViewActionDidFinish object:self];
+}
+
+
+
+
+#pragma mark - Tab Bar Controller Delegate
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if (_currentController == viewController) {
+        return;
+    }
+    
+    if ([tabBarController selectedIndex] == 2) {
+        //If the user is selecting the mapview controller, we set _currentController to it
+        _currentController = (UIViewController<BannerViewContainer> *)[((UINavigationController *)viewController).viewControllers objectAtIndex:0];
+        
+        if (adBanner.bannerLoaded) {
+            //[_currentController hideBannerView:adBanner animated:NO];
+            [_currentController showBannerView:adBanner animated:YES];
+        } else {
+            
+        }
+    } else {
+        _currentController = nil;
+    }
 }
 
 
