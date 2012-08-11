@@ -18,7 +18,7 @@ double const kMilestoKm = 1.609344;
 
 @synthesize name = _name;
 @synthesize location_id, lat, lon, coordinate, address, city, state, zip;
-@synthesize ext_id, ext_reference, ext_url, phone_formatted, phone_international, distance;
+@synthesize ext_id, ext_reference, ext_url, phone_formatted, phone_international, ext_image_url, local_image_url, distance;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord {
     self = [super init];
@@ -80,6 +80,8 @@ double const kMilestoKm = 1.609344;
     location.ext_url = [NSString stringWithFormat:@"%@", [item objectForKey:@"ext_url"]];
     location.phone_formatted = [NSString stringWithFormat:@"%@", [item objectForKey:@"phone_formatted"]];
     location.phone_international = [NSString stringWithFormat:@"%@", [item objectForKey:@"phone_international"]];
+    location.ext_image_url = [NSString stringWithFormat:@"%@", [item objectForKey:@"ext_image_url"]];
+    location.local_image_url = [NSString stringWithFormat:@"%@", [item objectForKey:@"local_image_url"]];
     
     return location;
 }

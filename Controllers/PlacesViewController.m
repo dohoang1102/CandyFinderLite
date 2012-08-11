@@ -104,7 +104,7 @@
         Location *userLoc = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).currentLocation;
         
         responseData = [NSMutableData data];
-        NSString *url = [NSString stringWithFormat:PLACES_URL, userLoc.lat, userLoc.lon, PLACES_RADIUS, PLACES_TYPES, PLACES_KEY];
+        NSString *url = [NSString stringWithFormat:PLACES_URL, userLoc.lat, userLoc.lon, PLACES_RADIUS, @"", PLACES_KEY];
         url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -416,7 +416,7 @@
         Location *tmpLoc = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).currentLocation;
         
         responseData = [NSMutableData data];
-        NSString *url = [NSString stringWithFormat:PLACES_URL, tmpLoc.lat, tmpLoc.lon, PLACES_RADIUS, PLACES_TYPES, PLACES_KEY];
+        NSString *url = [NSString stringWithFormat:PLACES_URL, tmpLoc.lat, tmpLoc.lon, PLACES_RADIUS, @"", PLACES_KEY];
         url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSLog(@"%@", url);
         NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];

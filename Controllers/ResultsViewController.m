@@ -257,7 +257,7 @@
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.text = candy.subtitle;
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-    UIImage *image = [UIImage imageNamed:@"milkyway.png"];
+    UIImage *image = [UIImage imageNamed:@"Icon.png"];
     cell.imageView.image = image;
     
     return cell;
@@ -327,8 +327,9 @@
     app.currentCandy = candy;
     
     UINavigationController *navController = (UINavigationController *)[self.tabBarController.viewControllers objectAtIndex:2];
-    if([navController.viewControllers count] > 0 && [navController.topViewController isKindOfClass:[AnnotationDetails class]]) {
-        [navController popViewControllerAnimated:NO];
+    if([navController.viewControllers count] > 0 && ![navController.topViewController isKindOfClass:[MapViewController class]]) {
+        //[navController popViewControllerAnimated:NO];
+        [navController popToRootViewControllerAnimated:NO];
     }
     [self.tabBarController setSelectedIndex:2];
      

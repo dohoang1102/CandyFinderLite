@@ -172,10 +172,11 @@
 
 - (IBAction)displayCamera:(id)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentModalViewController:imagePicker animated:YES];
+        //We are putting the "take a picture" option on hold for now
+        //UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        //imagePicker.delegate = self;
+        //imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        //[self presentModalViewController:imagePicker animated:YES];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera Available" message:@"Your device doesn't have a camera." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert dismissWithClickedButtonIndex:0 animated:YES];
@@ -278,11 +279,11 @@
             return;
         }
         if(self.imageView.tag == 0) {
-            save = NO;
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a Picture" message:@"Would you like to take a picture of the candy?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-            [alert dismissWithClickedButtonIndex:0 animated:YES];
-            [alert show];
-            return;
+            //save = NO;
+            //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a Picture" message:@"Would you like to take a picture of the candy?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+            //[alert dismissWithClickedButtonIndex:0 animated:YES];
+            //[alert show];
+            //return;
         }
         if(save) {
             [self displayActionSheet:self];

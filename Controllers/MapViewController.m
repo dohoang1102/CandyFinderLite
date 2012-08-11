@@ -210,6 +210,8 @@
         LocationDetailsViewController *vc = (LocationDetailsViewController *)[segue destinationViewController];
         UIButton *button = (UIButton *)sender;
         
+        vc.filteredCandy = filteredCandy;
+        
         // Pass any objects to the view controller here, like...
         for(Location *loc in mapView.annotations) {
             if([loc isMemberOfClass:[Location class]]) {
@@ -448,6 +450,7 @@
     //Using NSURL send the message
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if(app.currentCandy) {
+        filteredCandy = app.currentCandy;
         responseData = [NSMutableData data];
         NSString *url = [NSString stringWithFormat:LOCATIONS_FROM_CANDY, app.currentCandy.candy_id, app.currentLocation.lat, app.currentLocation.lon];
         NSLog(@"search url: %@", url);
@@ -485,6 +488,7 @@
 - (IBAction)dismissAnnotationsForCandy:(id)sender {
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     app.currentCandy = nil;
+    filteredCandy = nil;
     locationsNearYou.text = ALL_LOCATIONS;
     isFilteringByCandy = NO;
     shouldReloadAllAnnotations = YES;

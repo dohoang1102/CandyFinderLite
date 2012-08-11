@@ -14,6 +14,7 @@
 #import "FlurryAnalytics.h"
 #import "AppDelegate.h"
 #import "AnnotationDetails.h"
+#import "MapViewController.h"
 
 
 @implementation HistoryViewController
@@ -129,7 +130,7 @@
     cell.textLabel.text = candy.title;
     cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     cell.detailTextLabel.text = candy.subtitle;
-    UIImage *image = [UIImage imageNamed:@"milkyway.png"];
+    UIImage *image = [UIImage imageNamed:@"Icon.png"];
     cell.imageView.image = image;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
@@ -206,8 +207,9 @@
     app.currentCandy = candy;
     
     UINavigationController *navController = (UINavigationController *)[self.tabBarController.viewControllers objectAtIndex:2];
-    if([navController.viewControllers count] > 0 && [navController.topViewController isKindOfClass:[AnnotationDetails class]]) {
-        [navController popViewControllerAnimated:NO];
+    if([navController.viewControllers count] > 0 && ![navController.topViewController isKindOfClass:[MapViewController class]]) {
+        //[navController popViewControllerAnimated:NO];
+        [navController popToRootViewControllerAnimated:NO];
     }
     [self.tabBarController setSelectedIndex:2];
 }

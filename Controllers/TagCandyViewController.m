@@ -168,7 +168,7 @@
     cell.textLabel.text = candy.title;
     cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     cell.detailTextLabel.text = candy.subtitle;
-    UIImage *image = [UIImage imageNamed:@"milkyway.png"];
+    UIImage *image = [UIImage imageNamed:@"Icon.png"];
     cell.imageView.image = image;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];

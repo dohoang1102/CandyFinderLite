@@ -50,6 +50,7 @@
     BOOL fromAnnotationDetails;
     NSString *labelHolder;
     BOOL isFirstTimeLoading;
+    Candy *filteredCandy;
     
     //isFilteringByLocation tells the app that the user wants to zoom to the matching locations
     BOOL isFilteringByLocation;

@@ -47,8 +47,8 @@ NSString *const kAppiraterRatedCurrentVersion		= @"kAppiraterRatedCurrentVersion
 NSString *const kAppiraterDeclinedToRate			= @"kAppiraterDeclinedToRate";
 NSString *const kAppiraterReminderRequestDate		= @"kAppiraterReminderRequestDate";
 
-//NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID";
-NSString *templateReviewURL = @"http://www.candyfinder.net";
+NSString *templateReviewURL = @"http://itunes.apple.com/us/app/candy-finder-light/id538911312?ls=1&mt=8";
+//NSString *templateReviewURL = @"http://www.candyfinder.net";
 
 @interface Appirater ()
 - (BOOL)connectedToNetwork;

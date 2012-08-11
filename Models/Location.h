@@ -26,6 +26,8 @@
     NSString *ext_url;
     NSString *phone_formatted;
     NSString *phone_international;
+    NSString *ext_image_url;
+    NSString *local_image_url;
     double distance;
 }
 
@@ -43,6 +45,8 @@
 @property (nonatomic, strong) NSString *ext_url;
 @property (nonatomic, strong) NSString *phone_formatted;
 @property (nonatomic, strong) NSString *phone_international;
+@property (nonatomic, strong) NSString *ext_image_url;
+@property (nonatomic, strong) NSString *local_image_url;
 @property (nonatomic) double distance; //Describes distance from user's current location (calculated at run-time)
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord;

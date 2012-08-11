@@ -69,8 +69,8 @@
 
 //Google Places API
 #define PLACES_URL                  @"https://maps.googleapis.com/maps/api/place/search/json?location=%@,%@&radius=%@&types=%@&sensor=true&key=%@"
-#define PLACES_RADIUS               @"1600"
-#define PLACES_TYPES                @"gas_station|grocery_or_supermarket|liquor_store|shopping_mall|convenience_store"
+#define PLACES_RADIUS               @"3200"
+#define PLACES_TYPES                @"gas_station|grocery_or_supermarket|liquor_store|shopping_mall|convenience_store|movie_theater|shopping_mall"
 #define PLACES_KEY                  @"AIzaSyB7Px85Mowk_a-S05aVqfvnzsDX98qLjYA"
 
 //UITableViewCell Customization

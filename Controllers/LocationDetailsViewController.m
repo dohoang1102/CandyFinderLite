@@ -18,7 +18,7 @@
 
 @implementation LocationDetailsViewController
 
-@synthesize location, directionsCell, nameCell, phoneCell, inventoryCell, tagCandyCell;
+@synthesize location, filteredCandy, directionsCell, nameCell, phoneCell, inventoryCell, tagCandyCell;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -116,6 +116,7 @@
                     frame = nameCell.detailTextLabel.frame;
                     nameCell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
                     self.nameCell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", location.address, location.city, location.state, location.zip];
+                    self.nameCell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:location.ext_image_url]]];
                     //Insert distance label
                     
                     return self.nameCell;
@@ -141,7 +142,67 @@
         return phoneCell;
     }else if (indexPath.section == 2) {
         //Tag Candy cell
-        //Already configured
+        if(filteredCandy) {
+            //tagCandyCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            
+            tagCandyCell.textLabel.text = filteredCandy.title;
+            //tagCandyCell.textLabel.font = [UIFont systemFontOfSize:15.0];
+            
+            NSTimeInterval timeInterval = abs([filteredCandy.updated_at timeIntervalSinceNow]);
+            NSString *timeAgo;
+            double minutes = round(timeInterval / 60);
+            if(minutes < 60) {
+                timeAgo = [NSString stringWithFormat:@"Last seen: %.f %@ ago", round(minutes), minutes == 1? @"minute":@"minutes"];
+            } else {
+                double hours = round((timeInterval / 60) / 60);
+                if(hours < 24){
+                    if(hours < 2) {
+                        timeAgo = [NSString stringWithFormat:@"Last seen: %.f hour ago", (hours)];
+                    } else {
+                        timeAgo = [NSString stringWithFormat:@"Last seen: %.f hours ago", (hours)];
+                    }
+                } else {
+                    double days = round(hours / 24);
+                    if(days < 2) {
+                        timeAgo = [NSString stringWithFormat:@"Last seen: %.f day ago", (days)];
+                    }else if(days < 30) {
+                        timeAgo = [NSString stringWithFormat:@"Last seen: %.f days ago", (days)];
+                    } else if (days < 365) {
+                        double months = round(days / 30);
+                        if(months < 2) {
+                            timeAgo = [NSString stringWithFormat:@"Last seen: %.f month ago", (months)];
+                        } else {
+                            timeAgo = [NSString stringWithFormat:@"Last seen: %.f months ago", (months)];
+                        }
+                    } else {
+                        double years = round(days / 365);
+                        if(years < 2) {
+                            timeAgo = [NSString stringWithFormat:@"Last seen: %.f year ago", (years)];
+                        } else {
+                            timeAgo = [NSString stringWithFormat:@"Last seen: %.f years ago", (years)];
+                        }
+                    }
+                }
+            }
+            
+            tagCandyCell.detailTextLabel.text = timeAgo;
+            
+            UIButton *updateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect]; 
+            updateButton.frame = CGRectMake(278.0, 6.0, 37.0, 28.0);
+            [updateButton setTitle:@"Update" forState:UIControlStateNormal];
+            updateButton.titleLabel.font = [UIFont systemFontOfSize:9.0];
+            updateButton.titleLabel.textColor = [UIColor darkGrayColor];
+            updateButton.tag = [filteredCandy.candy_id intValue];
+            
+            [updateButton addTarget:self action:@selector(updateButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [tagCandyCell setAccessoryView:updateButton];
+        } else {
+            //tagCandyCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            tagCandyCell.textLabel.text = @"Tag Candy Here";
+            tagCandyCell.detailTextLabel.text = nil;
+            tagCandyCell.userInteractionEnabled = YES;
+        }
         return tagCandyCell;
     }else if (indexPath.section == 3) {
         //Inventory cell
@@ -219,11 +280,15 @@
         }
         case 2: {
             //Tag Candy
-            //Set selected index to 1 (for "Tag New")
-            if(location) {
-                [LocationPoster sharedLocationPoster].currentLocation = location;
+            if(filteredCandy) {
+                [self updateButtonTapped:self];
+            } else {
+                //Set selected index to 1 (for "Tag New")
+                if(location) {
+                    [LocationPoster sharedLocationPoster].currentLocation = location;
+                }
+                [self.tabBarController setSelectedIndex:1];
             }
-            [self.tabBarController setSelectedIndex:1];
             break;
         }
         case 3: {
@@ -268,9 +333,53 @@
         } else if ([alertView.title isEqualToString:@"Switching to Phone"]) {
             //User wants to call the location
             //Make phone call
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:location.phone_international]];
+            NSCharacterSet *specialCharSet = [NSCharacterSet characterSetWithCharactersInString:@" )(-+,"];
+            NSArray *components = [location.phone_international componentsSeparatedByCharactersInSet:specialCharSet];
+            NSString *phoneStr = [components componentsJoinedByString:@""];
+            phoneStr = [NSString stringWithFormat:@"tel:%@", phoneStr];
+            NSURL *url = [[NSURL alloc] initWithString:phoneStr];
+
+            NSLog(@"%@", phoneStr);
+            [[UIApplication sharedApplication] openURL:url];
         }
         
+    }
+}
+
+
+#pragma mark - Action Sheet
+- (IBAction)updateButtonTapped:(id)sender {
+    [self displayActionSheet:sender];
+}
+
+- (IBAction)displayActionSheet:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Confirm that %@ still carries %@?", location.name, filteredCandy.title]
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Yes", nil];
+    
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+        {
+            //PUT annotation here (update it)
+            filteredCandy.updated_at = [NSDate date];
+            [[LocationPoster sharedLocationPoster] updateAnnotationLocation:location withCandy:filteredCandy];
+            
+            if(self.navigationController.navigationBarHidden) {
+                [self.searchDisplayController.searchResultsTableView reloadData];
+            } else {
+                [self.tableView reloadData];
+            }
+            //[self refreshButtonTapped:self];
+            break;
+        }
+        default:
+            break;
     }
 }
 

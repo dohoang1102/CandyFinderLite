@@ -40,7 +40,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [navBar setFrame:CGRectMake(0, 0, 320, 44)];
     [doneButton setStyle:UIBarButtonItemStyleDone];
-    [doneButton setTintColor:[UIColor blueColor]];
+    //[doneButton setTintColor:[UIColor blueColor]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
